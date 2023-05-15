@@ -24,9 +24,12 @@ function exibirInput() {
     
     for (let i = 0; i < palavra.length; i++) {
         if (letraProibidas.includes(palavra.charAt(i))) {
-         return alert("palavra  não permitida por conter caracteres não permitidos");
+        
+            resposta('caractere não valido')
+        return 
+             
         } else if(primeiraLetra === "x" || primeiraLetra === "z" ){
-           return alert("cadeia é uma palavra reservada");
+           return resposta("cadeia é uma palavra reservada");
         } else if(i % 2 === 0 && i !== palavra.length - 1 && !consoantes.test(palavra[i])) {
             validacaoConsoante = false;
         } else if (numeros.includes(ultimaLetra)) {
@@ -38,12 +41,25 @@ function exibirInput() {
         }
     }
     if(validacaoConsoante === true && validacaovogais === true){
-        alert("A palavra: " + palavra + " é permitida");
+        resposta("A palavra: " + palavra + " é permitida");
     } else{
-        alert("A palavra: " + palavra + " não é permitida");
+        resposta("A palavra: " + palavra + " não é permitida");
     }  
 }
 
 
+function fecharModal(){
+    document.getElementById('modal').style.display = 'none'   
+}
+
+function resposta(resposta){
+    document.getElementById('modal').style.display = 'flex'   
+    return document.getElementById('resposta').innerHTML =  `
+    <div class="card-modal">
+        <button onclick="fecharModal()">X</button>
+        <p style="color: black">${resposta}</p>
+    </div>
+    `   
+}
 
 
